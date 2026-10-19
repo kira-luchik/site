@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Арт-заказы</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#faf6f4;--card:#fff;--tx:#2b2430;--mut:#8a8190;--ac:#b4568e;--ac2:#f6e1ee;--bd:#e9e0e5;--ok:#3f9d6b;--bad:#d2493f;--warn:#d98a1f}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#17131a;--card:#221c26;--tx:#f0e9f2;--mut:#a398aa;--ac:#e07fb7;--ac2:#3a2634;--bd:#352d3a;--ok:#5cc08c;--bad:#f06a60;--warn:#f0a947}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#17131a;--card:#221c26;--tx:#f0e9f2;--mut:#a398aa;--ac:#e07fb7;--ac2:#3a2634;--bd:#352d3a;--ok:#5cc08c;--bad:#f06a60;--warn:#f0a947}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--bd);padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+h1{font-size:18px;margin:0 8px 0 0}
+nav{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+nav button{border:0;background:none;color:var(--mut);padding:7px 12px;border-radius:9px;font:inherit;cursor:pointer}
+nav button.on{background:var(--ac2);color:var(--ac);font-weight:600}
+main{max-width:1100px;margin:0 auto;padding:16px}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:9px;padding:7px 14px;cursor:pointer}
+.btn.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.btn.s{padding:3px 9px;font-size:13px}
+input,select,textarea{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 9px}
+textarea{min-height:70px;resize:vertical}
+label{display:block;font-size:12px;color:var(--mut);margin:10px 0 3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:13px}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.mut{color:var(--mut);font-size:13px}.price{font-weight:700;color:var(--ac)}
+.tag{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--ac2);color:var(--ac)}
+.tag.done{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.stages{display:flex;gap:6px;margin:10px 0 6px}
+.stages label{flex:1;margin:0;display:flex;gap:5px;align-items:center;font-size:13px;color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:5px 7px;cursor:pointer}
+.stages input{width:auto}
+.bar{height:5px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.thumbs{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.thumbs img{width:54px;height:54px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid var(--bd)}
+.thumbs a{font-size:12px;color:var(--ac);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;align-self:center}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;overflow-x:auto;min-width:640px}
+.calw{overflow-x:auto}
+.dh{font-size:12px;color:var(--mut);text-align:center}
+.day{min-height:92px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:5px;cursor:pointer;overflow:hidden}
+.day.o{opacity:.4}.day.t{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.day b{font-size:12px;color:var(--mut)}
+.chip{font-size:11.5px;background:var(--ac2);color:var(--ac);border-radius:6px;padding:1px 5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip.dl{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.dlrow{display:flex;gap:12px;align-items:center;padding:10px 12px}
+.pill{min-width:74px;text-align:center;border-radius:9px;padding:4px 6px;font-weight:600;font-size:13px}
+.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}.wn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}.bd{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.big{font-size:34px;font-weight:800;color:var(--ac)}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-start;justify-content:center;overflow:auto;z-index:20;padding:20px 12px}
+#md{background:var(--bg);border-radius:16px;padding:18px;width:100%;max-width:520px;border:1px solid var(--bd)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.empty{text-align:center;color:var(--mut);padding:40px 10px}
+.x{cursor:pointer;color:var(--bad);margin-left:6px}
+</style></head><body>
+<header><h1>🎨 Арт-заказы</h1>
+<nav id="nav"></nav>
+<span class="mut" title="Курс для пересчёта в рубли">$1 = <input id="rate" type="number" step="0.01" style="width:78px;padding:3px 6px"> ₽</span><button class="btn g s" data-a="bk">Бэкап</button><button class="btn s" data-a="new">+ Заказ</button></header>
+<main id="m"></main>
+<div id="ov"><div id="md"></div></div>
+<script>
+const TABS=[["orders","Заказы"],["cal","Календарь"],["dl","Дедлайны"],["works","Патреон и работы"],["inc","Доход"]];
+const ST={queue:"В очереди",work:"В работе",done:"Готово"};
+const CATS={patreon:"Патреон",excl:"Эксклюзив",other:"Другое"};
+let S={orders:[],works:[]},tab="orders",cm=new Date(),im=new Date(),wf="all";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const today=()=>iso(new Date());
+const fmt=d=>d?new Date(d+"T00:00").toLocaleDateString("ru-RU",{day:"numeric",month:"short"}):"—";
+const left=d=>Math.round((new Date(d+"T00:00")-new Date(today()+"T00:00"))/864e5);
+const money=n=>(Math.round(n)||0).toLocaleString("ru-RU")+" ₽";
+const uid=()=>Math.random().toString(36).slice(2,9);
+const R=()=>S.rate>0?S.rate:83.62;
+const usd=n=>"$"+(Math.round((+n||0)*100)/100).toLocaleString("en-US");
+const both=n=>usd(n)+" · "+money((+n||0)*R());
+const mkey=d=>iso(d).slice(0,7);
+const mname=d=>d.toLocaleDateString("ru-RU",{month:"long",year:"numeric"});
+const prog=o=>Object.values(o.st||{}).filter(Boolean).length;
+
+// storage (IndexedDB, с запасным вариантом localStorage)
+let db;
+const idb=()=>new Promise(r=>{try{const q=indexedDB.open("artorders",1);q.onupgradeneeded=()=>q.result.createObjectStore("kv");q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}});
+async function load(){db=await idb();let v=null;
+ try{if(db)v=await new Promise(r=>{const q=db.transaction("kv").objectStore("kv").get("s");q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)});else v=JSON.parse(localStorage.getItem("artorders")||"null")}catch(e){}
+ if(v&&v.orders)S=v}
+let tm;function save(){clearTimeout(tm);tm=setTimeout(()=>{try{if(db)db.transaction("kv","readwrite").objectStore("kv").put(S,"s");else localStorage.setItem("artorders",JSON.stringify(S))}catch(e){}},200)}
+function shrink(f){return new Promise(r=>{const i=new Image,u=URL.createObjectURL(f);i.onload=()=>{const k=Math.min(1,1200/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);r(c.toDataURL("image/jpeg",.85))};i.onerror=()=>r(null);i.src=u})}
+
+function nav(){$("#nav").innerHTML=TABS.map(t=>`<button data-t="${t[0]}" class="${tab==t[0]?"on":""}">${t[1]}</button>`).join("")}
+function render(){nav();$("#m").innerHTML=({orders:vOrders,cal:vCal,dl:vDl,works:vWorks,inc:vInc})[tab]()}
+
+function vOrders(){
+ const a=S.orders.filter(o=>o.status!="done"),d=S.orders.filter(o=>o.status=="done");
+ const mo=S.orders.filter(o=>o.status=="done"&&(o.done||"").slice(0,7)==mkey(new Date())).reduce((s,o)=>s+(+o.price||0),0);
+ const sum=`<div class="row" style="margin-bottom:12px"><div class="mut">Активных: <b>${a.length}</b> · Заработано в этом месяце: <b class="price">${both(mo)}</b></div></div>`;
+ const list=x=>x.map(card).join("");
+ return sum+(S.orders.length?`<div class="grid">${list(a)}</div>${d.length?`<h3 class="mut" style="margin:22px 0 8px">Завершённые</h3><div class="grid">${list(d)}</div>`:""}`:`<div class="empty">Заказов пока нет.<br>Нажми «+ Заказ», чтобы добавить первый.</div>`)}
+function card(o){const p=prog(o),dd=o.deadline?left(o.deadline):null;
+ const refs=(o.imgs||[]).map((s,i)=>`<img src="${s}" data-a="zoom" data-id="${o.id}" data-i="${i}" alt="">`).join("")+(o.links||[]).map(l=>`<a href="${esc(l)}" target="_blank" rel="noopener">🔗 ${esc(l.replace(/^https?:\/\//,""))}</a>`).join("");
+ return `<div class="card"><div class="row"><b>${esc(o.title||"Без названия")}</b><span class="tag ${o.status=="done"?"done":""}">${ST[o.status]}</span></div>
+ <div class="row mut"><span>${o.client?"@"+esc(o.client.replace(/^@/,"")):"заказчик не указан"}</span><span class="price">${both(o.price)}</span></div>
+ ${o.wishes?`<div class="mut" style="margin-top:6px">${esc(o.wishes)}</div>`:""}
+ <div class="stages">${[["sk","Скетч"],["ln","Лайн"],["rn","Рендер"]].map(s=>`<label><input type="checkbox" data-a="st" data-id="${o.id}" data-k="${s[0]}" ${o.st&&o.st[s[0]]?"checked":""}>${s[1]}</label>`).join("")}</div>
+ <div class="bar"><i style="width:${p/3*100}%"></i></div>
+ <div class="row mut" style="margin-top:6px"><span>📅 ${fmt(o.planned)}</span><span>⏰ ${fmt(o.deadline)}${dd!==null&&o.status!="done"?` (${dd<0?"просрочено":dd==0?"сегодня":dd+" дн."})`:""}</span></div>
+ ${refs?`<div class="thumbs">${refs}</div>`:""}
+ <div class="row" style="margin-top:10px"><button class="btn g s" data-a="edit" data-id="${o.id}">Изменить</button>${o.status!="done"?`<button class="btn s" data-a="fin" data-id="${o.id}">✓ Сдан</button>`:`<span class="mut">сдан ${fmt(o.done)}</span>`}</div></div>`}
+
+function vCal(){
+ const y=cm.getFullYear(),m=cm.getMonth(),first=new Date(y,m,1),off=(first.getDay()+6)%7,start=new Date(y,m,1-off);
+ let h=`<div class="row" style="margin-bottom:10px"><button class="btn g s" data-a="cp">←</button><b style="text-transform:capitalize">${mname(cm)}</b><button class="btn g s" data-a="cn">→</button></div><div class="calw"><div class="cal">`+["Пн","Вт","Ср","Чт","Пт","Сб","Вс"].map(x=>`<div class="dh">${x}</div>`).join("");
+ for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const k=iso(d);
+  const pl=S.orders.filter(o=>o.planned==k),dl=S.orders.filter(o=>o.deadline==k&&o.status!="done");
+  h+=`<div class="day ${d.getMonth()!=m?"o":""} ${k==today()?"t":""}" data-a="day" data-d="${k}"><b>${d.getDate()}</b>${pl.map(o=>`<div class="chip">${esc(o.title)}</div>`).join("")}${dl.map(o=>`<div class="chip dl">⏰ ${esc(o.title)}</div>`).join("")}</div>`}
+ return h+`</div></div><p class="mut">Нажми на день, чтобы поставить туда заказы. Оранжевые отметки — дедлайны.</p>`}
+
+function vDl(){
+ const a=S.orders.filter(o=>o.deadline&&o.status!="done").sort((x,y)=>x.deadline.localeCompare(y.deadline));
+ if(!a.length)return `<div class="empty">Нет активных дедлайнов 🎉<br>Укажи срок сдачи в заказе — он появится здесь.</div>`;
+ return `<div class="card" style="padding:0">`+a.map(o=>{const d=left(o.deadline),c=d<0?"bd":d<=3?"wn":"ok";
+  return `<div class="dlrow" style="border-bottom:1px solid var(--bd)"><span class="pill ${c}">${d<0?"−"+(-d)+" дн.":d==0?"сегодня":d+" дн."}</span><div style="flex:1"><b>${esc(o.title)}</b><div class="mut">${o.client?"@"+esc(o.client.replace(/^@/,""))+" · ":""}до ${fmt(o.deadline)} · этапов ${prog(o)}/3</div></div><span class="price">${both(o.price)}</span><button class="btn g s" data-a="edit" data-id="${o.id}">Открыть</button></div>`}).join("")+`</div>`}
+
+function vWorks(){
+ const w=S.works.filter(x=>wf=="all"||x.cat==wf);
+ return `<div class="row" style="margin-bottom:12px"><div>${[["all","Все"],...Object.entries(CATS)].map(c=>`<button class="btn s ${wf==c[0]?"":"g"}" data-a="wf" data-k="${c[0]}">${c[1]}</button>`).join(" ")}</div><button class="btn s" data-a="neww">+ Работа</button></div>`+
+ (w.length?`<div class="grid">${w.map(x=>`<div class="card">${x.img?`<img src="${x.img}" style="width:100%;border-radius:10px;max-height:260px;object-fit:cover" alt="">`:""}<div class="row" style="margin-top:8px"><b>${esc(x.title)}</b><span class="tag">${CATS[x.cat]}</span></div><div class="mut">${fmt(x.date)}</div>${x.note?`<div style="margin-top:4px">${esc(x.note)}</div>`:""}${x.link?`<a href="${esc(x.link)}" target="_blank" rel="noopener" class="mut">🔗 ссылка</a>`:""}<div style="margin-top:8px"><button class="btn g s" data-a="editw" data-id="${x.id}">Изменить</button></div></div>`).join("")}</div>`:`<div class="empty">Здесь пусто. Добавь арты для Патреона, эксклюзивы и другие работы.</div>`)}
+
+function vInc(){
+ const k=mkey(im),dn=S.orders.filter(o=>o.status=="done"&&(o.done||"").slice(0,7)==k),tot=dn.reduce((s,o)=>s+(+o.price||0),0);
+ const pend=S.orders.filter(o=>o.status!="done"&&(o.deadline||"").slice(0,7)==k).reduce((s,o)=>s+(+o.price||0),0);
+ return `<div class="row" style="margin-bottom:10px"><button class="btn g s" data-a="ip">←</button><b style="text-transform:capitalize">${mname(im)}</b><button class="btn g s" data-a="in">→</button></div>
+ <div class="card"><div class="mut">Итоговый заработок за месяц</div><div class="big">${usd(tot)}</div><div class="mut" style="font-size:18px;margin:2px 0 6px">≈ ${money(tot*R())} по курсу ${R()} ₽</div><div class="mut">Сдано заказов: ${dn.length} · Ожидается по дедлайнам этого месяца: ${both(pend)}</div></div>
+ <div class="card" style="margin-top:12px;padding:0">${dn.length?dn.map(o=>`<div class="dlrow" style="border-bottom:1px solid var(--bd)"><div style="flex:1"><b>${esc(o.title)}</b><div class="mut">${o.client?"@"+esc(o.client.replace(/^@/,""))+" · ":""}сдан ${fmt(o.done)}</div></div><span class="price">${both(o.price)}</span></div>`).join(""):`<div class="empty">В этом месяце сданных заказов нет.</div>`}</div>
+ <p class="mut">Заказ попадает в доход того месяца, когда ты нажала «✓ Сдан».</p>`}
+
+// modals
+const open=h=>{$("#md").innerHTML=h;$("#ov").style.display="flex"},close=()=>{$("#ov").style.display="none"};
+let tmpImgs=[];
+function orderForm(o){o=o||{};tmpImgs=[...(o.imgs||[])];
+ open(`<h3 style="margin-top:0">${o.id?"Заказ":"Новый заказ"}</h3>
+ <label>Название / что рисуем</label><input id="f_t" value="${esc(o.title)}">
+ <div class="two"><div><label>Юзернейм заказчика</label><input id="f_c" placeholder="@username" value="${esc(o.client)}"></div><div><label>Стоимость, $ <span id="f_r">${o.price?"≈ "+money(o.price*R()):""}</span></label><input id="f_p" type="number" step="0.01" value="${o.price??""}" oninput="document.getElementById('f_r').textContent=this.value?'≈ '+money(this.value*R()):''"></div></div>
+ <label>Пожелания</label><textarea id="f_w">${esc(o.wishes)}</textarea>
+ <div class="two"><div><label>Планирую рисовать</label><input id="f_pl" type="date" value="${o.planned||""}"></div><div><label>Дедлайн</label><input id="f_d" type="date" value="${o.deadline||""}"></div></div>
+ <label>Статус</label><select id="f_s">${Object.entries(ST).map(s=>`<option value="${s[0]}" ${o.status==s[0]?"selected":""}>${s[1]}</option>`).join("")}</select>
+ <label>Ссылки на референсы (по одной в строке)</label><textarea id="f_l">${esc((o.links||[]).join("\n"))}</textarea>
+ <label>Загрузить референсы (картинки)</label><input id="f_i" type="file" accept="image/*" multiple><div class="thumbs" id="f_th"></div>
+ <div class="row" style="margin-top:16px"><span>${o.id?`<button class="btn g s" style="color:var(--bad)" data-a="del" data-id="${o.id}">Удалить</button>`:""}</span><span><button class="btn g" data-a="x">Отмена</button> <button class="btn" data-a="saveo" data-id="${o.id||""}">Сохранить</button></span></div>`);
+ thumbs()}
+function thumbs(){$("#f_th").innerHTML=tmpImgs.map((s,i)=>`<span style="position:relative"><img src="${s}" alt=""><span class="x" data-a="rmi" data-i="${i}" style="position:absolute;top:-4px;right:-2px;background:var(--card);border-radius:99px;padding:0 5px">×</span></span>`).join("")}
+function workForm(w){w=w||{};tmpImgs=w.img?[w.img]:[];
+ open(`<h3 style="margin-top:0">${w.id?"Работа":"Новая работа"}</h3>
+ <label>Название</label><input id="w_t" value="${esc(w.title)}">
+ <div class="two"><div><label>Раздел</label><select id="w_c">${Object.entries(CATS).map(c=>`<option value="${c[0]}" ${w.cat==c[0]?"selected":""}>${c[1]}</option>`).join("")}</select></div><div><label>Дата</label><input id="w_d" type="date" value="${w.date||today()}"></div></div>
+ <label>Заметка</label><textarea id="w_n">${esc(w.note)}</textarea><label>Ссылка</label><input id="w_l" value="${esc(w.link)}">
+ <label>Картинка</label><input id="f_i" type="file" accept="image/*"><div class="thumbs" id="f_th"></div>
+ <div class="row" style="margin-top:16px"><span>${w.id?`<button class="btn g s" style="color:var(--bad)" data-a="delw" data-id="${w.id}">Удалить</button>`:""}</span><span><button class="btn g" data-a="x">Отмена</button> <button class="btn" data-a="savew" data-id="${w.id||""}">Сохранить</button></span></div>`);thumbs()}
+function dayModal(k){
+ const pl=S.orders.filter(o=>o.planned==k),av=S.orders.filter(o=>o.status!="done"&&o.planned!=k);
+ open(`<h3 style="margin-top:0">${new Date(k+"T00:00").toLocaleDateString("ru-RU",{weekday:"long",day:"numeric",month:"long"})}</h3>
+ ${pl.length?pl.map(o=>`<div class="row card" style="margin-bottom:6px;padding:8px 10px"><span><b>${esc(o.title)}</b> <span class="mut">${o.client?"@"+esc(o.client.replace(/^@/,"")):""}</span></span><span><button class="btn g s" data-a="edit" data-id="${o.id}">Открыть</button><span class="x" data-a="unp" data-id="${o.id}" data-d="${k}">убрать</span></span></div>`).join(""):`<div class="mut">На этот день ничего не запланировано.</div>`}
+ <label>Поставить на этот день</label><div class="row" style="flex-wrap:nowrap"><select id="d_s">${av.map(o=>`<option value="${o.id}">${esc(o.title)}${o.planned?" (сейчас "+fmt(o.planned)+")":""}</option>`).join("")||"<option value=''>нет доступных заказов</option>"}</select><button class="btn" data-a="plan" data-d="${k}">Добавить</button></div>
+ <div class="row" style="margin-top:14px"><button class="btn g s" data-a="newd" data-d="${k}">+ Новый заказ на этот день</button><button class="btn g" data-a="x">Закрыть</button></div>`)}
+
+const gO=id=>S.orders.find(o=>o.id==id);
+document.addEventListener("change",async e=>{
+ const t=e.target;
+ if(t.id=="rate"){S.rate=+t.value>0?+t.value:R();t.value=R();save();render()}
+ if(t.dataset.a=="st"){const o=gO(t.dataset.id);o.st=o.st||{};o.st[t.dataset.k]=t.checked;if(t.checked&&o.status=="queue")o.status="work";save();render()}
+ if(t.id=="f_i"){const fs=[...t.files];for(const f of fs){const s=await shrink(f);if(s){if(t.multiple)tmpImgs.push(s);else tmpImgs=[s]}}thumbs();t.value=""}
+ if(t.id=="d_s"){}
+});
+document.addEventListener("click",e=>{
+ const el=e.target.closest("[data-a],[data-t]");if(!el)return;
+ if(el.dataset.t){tab=el.dataset.t;render();return}
+ const a=el.dataset.a,id=el.dataset.id,d=el.dataset.d;
+ const ac={
+  new:()=>orderForm(),x:close,
+  edit:()=>orderForm(gO(id)),
+  newd:()=>{orderForm({planned:d,status:"queue"})},
+  rmi:()=>{tmpImgs.splice(+el.dataset.i,1);thumbs()},
+  zoom:()=>{const o=gO(id);open(`<img src="${o.imgs[+el.dataset.i]}" style="width:100%;border-radius:10px" alt=""><div style="text-align:right;margin-top:10px"><button class="btn g" data-a="x">Закрыть</button></div>`)},
+  fin:()=>{const o=gO(id);o.status="done";o.done=today();o.st={sk:1,ln:1,rn:1};save();render()},
+  saveo:()=>{let o=id?gO(id):null;const isNew=!o;if(isNew){o={id:uid(),st:{}};S.orders.unshift(o)}
+   const st=$("#f_s").value;o.title=$("#f_t").value.trim();o.client=$("#f_c").value.trim();o.price=+$("#f_p").value||0;o.wishes=$("#f_w").value.trim();o.planned=$("#f_pl").value;o.deadline=$("#f_d").value;
+   if(st=="done"&&o.status!="done")o.done=today();if(st!="done")o.done="";o.status=st;
+   o.links=$("#f_l").value.split("\n").map(s=>s.trim()).filter(Boolean);o.imgs=[...tmpImgs];save();close();render()},
+  del:()=>{if(confirm("Удалить заказ?")){S.orders=S.orders.filter(o=>o.id!=id);save();close();render()}},
+  day:()=>dayModal(d),
+  plan:()=>{const v=$("#d_s").value;if(v){gO(v).planned=d;save();render();dayModal(d)}},
+  unp:()=>{gO(id).planned="";save();render();dayModal(d)},
+  cp:()=>{cm=new Date(cm.getFullYear(),cm.getMonth()-1,1);render()},cn:()=>{cm=new Date(cm.getFullYear(),cm.getMonth()+1,1);render()},
+  ip:()=>{im=new Date(im.getFullYear(),im.getMonth()-1,1);render()},in:()=>{im=new Date(im.getFullYear(),im.getMonth()+1,1);render()},
+  wf:()=>{wf=el.dataset.k;render()},neww:()=>workForm(),editw:()=>workForm(S.works.find(w=>w.id==id)),
+  savew:()=>{let w=id?S.works.find(x=>x.id==id):null;if(!w){w={id:uid()};S.works.unshift(w)}
+   w.title=$("#w_t").value.trim()||"Без названия";w.cat=$("#w_c").value;w.date=$("#w_d").value;w.note=$("#w_n").value.trim();w.link=$("#w_l").value.trim();w.img=tmpImgs[0]||"";save();close();render()},
+  delw:()=>{if(confirm("Удалить работу?")){S.works=S.works.filter(w=>w.id!=id);save();close();render()}},
+  bk:()=>open(`<h3 style="margin-top:0">Резервная копия</h3><p class="mut">Данные хранятся в этом браузере. Сохрани копию, чтобы не потерять заказы при очистке данных или смене компьютера.</p><div class="row"><button class="btn" data-a="exp">Скачать копию</button><label class="btn g" style="margin:0;color:var(--tx);font-size:15px;cursor:pointer">Загрузить копию<input type="file" accept=".json" id="imp" style="display:none"></label></div><label>Или вставь скопированные данные</label><textarea id="pj"></textarea><div class="row" style="margin-top:6px"><button class="btn g s" data-a="cpy">Скопировать мои данные</button><button class="btn s" data-a="imj">Загрузить из текста</button></div><div style="text-align:right;margin-top:14px"><button class="btn g" data-a="x">Закрыть</button></div>`),
+  cpy:async()=>{try{await navigator.clipboard.writeText(JSON.stringify(S));alert("Скопировано")}catch(e){$("#pj").value=JSON.stringify(S);$("#pj").select()}},imj:()=>{try{const v=JSON.parse($("#pj").value);if(v.orders&&confirm("Заменить текущие данные?")){S=v;save();close();render();$("#rate").value=R()}else alert("Не подходит")}catch(e){alert("Не подходит")}},exp:()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="art-orders-backup.json";a.click()}
+ };if(ac[a])ac[a]()});
+document.addEventListener("change",e=>{if(e.target.id=="imp"){const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const v=JSON.parse(t);if(v.orders&&confirm("Заменить текущие данные копией?")){S=v;save();close();render()}}catch(x){alert("Файл не подходит.")}})}});
+load().then(()=>{if(!S.v){S.v=2;S.rate=S.rate||83.62;save()}$("#rate").value=R();render()});
+</script></body></html>
